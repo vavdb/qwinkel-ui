@@ -1,9 +1,35 @@
+/* tslint:disable:no-any,no-console */
+
 import * as React from 'react';
 import './index.css';
 
 const logo = require('../../images/logo.svg');
 
-class App extends React.Component {
+interface State {
+  producten: any;
+}
+
+class App extends React.Component<any, State> {
+  constructor(props: any) { 
+    super(props); 
+    this.state = { producten: props.producten };
+  }
+
+  componentDidMount() {
+    this.callApi()
+      .then(res => this.setState({ producten: res.content }))
+      .catch(err => console.log(err));
+  }
+
+  callApi = async () => {
+    const response = await fetch('/api/producten');
+    const body = await response.json();
+
+    if (response.status !== 200) { throw Error(body.message); }
+
+    return body;
+  }  
+  
   render() {
     return (
       <div className="App">
@@ -12,7 +38,7 @@ class App extends React.Component {
           <h1 className="App-title">Welcome to qwinkel-ui</h1>
         </header>
         <p className="App-intro">
-          To get started, edit <code>src/components/App/index.tsx</code> and save to reload.
+          {JSON.stringify(this.state.producten)}
         </p>
       </div>
     );

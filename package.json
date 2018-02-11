@@ -2,6 +2,7 @@
   "name": "q",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://qwinkel.quintor.nl/",
   "dependencies": {
     "@types/react-router-dom": "^4.2.3",
     "react": "^16.2.0",
@@ -22,10 +23,5 @@
     "@types/react": "^16.0.36",
     "@types/react-dom": "^16.0.3",
     "typescript": "^2.7.1"
-  },
-  "proxy": {
-    "/api": {
-      "target": "http://qwinkel.quintor.nl/api/"
-    }
   }
 }
