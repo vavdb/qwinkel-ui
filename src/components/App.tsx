@@ -2,18 +2,17 @@
 import * as React from 'react';
 import '../interfaces';
 import './App.css';
-import Product from './Product';
-
+import 'react-redux';
+import ProductItem from './ProductItem';
+import CartDisplay from './CartDisplay';
+import { connect } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import { Cart, Product, State } from '../interfaces';
 const logo = require('../images/logo.svg');
 
-interface State {
-  producten: Product[];
-}
-
-class App extends React.Component<any, State> {
+class App extends React.Component<Cart, State> {
   constructor(props: any) {
     super(props);
-    this.state = { producten: props.producten };
   }
 
   componentDidMount() {
@@ -33,24 +32,45 @@ class App extends React.Component<any, State> {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welkom bij qwinkel</h1>
-        </header>
-        <main>
-          <section className="section">
-            <div className="Box">
-              <div className="columns is-multiline is-4">
-                {this.state.producten &&
-                  this.state.producten.map(product => <Product key={product.id} {...product} />)}
+        <BrowserRouter>
+        <div className="App">
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <h1 className="App-title">Welkom bij qwinkel</h1>
+
+          </header>
+          <main>
+            <CartDisplay/>
+            <section className="section">
+              <div className="Box">
+                <div className="columns is-multiline is-4">
+                  {this.state && this.state.producten &&
+                    this.state.producten.map(product => <ProductItem key={product.id} {...product} />)}
+                </div>
               </div>
-            </div>
-          </section>
-        </main>
-      </div>
+            </section>
+          </main>
+        </div>
+        </BrowserRouter>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state: State) => ({
+  cartId:  state.cart ? state.cart.cartId : null,
+  items: state.cart ? state.cart.items : null,
+});
+
+const mapDispatchToProps = dispatch => ({
+    addToCart(item: any, quantity: any) {
+        dispatch({
+            type: 'ADD_TO_CART',
+            payload: {
+                item,
+                quantity
+            }
+        });
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
