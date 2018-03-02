@@ -1,3 +1,4 @@
+import { Action, ActionCreator, Dispatch } from 'redux';
 
 export interface Product {
   id: number;
@@ -7,6 +8,12 @@ export interface Product {
   btw: number;
   youtubeUrl: string;
   afbeelding: Image;
+  afbeeldingen: Image[];
+}
+
+export interface CartItem {
+  product: Product;
+  quantity: number;
 }
 
 export interface Image {
@@ -14,12 +21,12 @@ export interface Image {
   filePath: string;
 }
 
-export interface Cart {
-  cartId: number;
-  items: Product[];
+export interface State {
+  cartId: string;
+  items: CartItem[];
 }
 
-export interface State {
-  cart: Cart;
-  producten: Product[];
-}
+// export interface State {
+//   cart: Cart;
+//   producten: Product[];
+// }

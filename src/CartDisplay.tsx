@@ -5,7 +5,7 @@ const CartDisplay = ({ cartId, items }) => (
   <div>
     <h2>{cartId}</h2>
     <ul>
-      { items.map(item => (
+      { items && items.map(item => (
         <li key={item.product.id}>
           {item.product.naam}
           <span>({item.quantity}×)</span>

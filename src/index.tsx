@@ -1,21 +1,26 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import App from './components/App';
-import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import qwinkelApp from './reducers';
-import { Cart } from  './interfaces';
-let cart = {} as Cart;
-cart.cartId = 1;
-cart.items = [];
-
-let store = createStore(qwinkelApp, cart);
-import './index.css';
-import 'font-awesome/css/font-awesome.min.css';
+import { BrowserRouter } from 'react-router-dom';
+import App from './App';
+import registerServiceWorker from './registerServiceWorker';
+import qwinkelApp from './modules/cart';
 import 'bulma/css/bulma.css';
+import 'font-awesome/css/font-awesome.min.css';
+
+/* tslint:disable:no-string-literal */
+let devtools: any = window['devToolsExtension']
+  ? window['devToolsExtension']()
+  : (f: any) => f;
+/* tslint:enable:no-string-literal */
+const store: any = devtools(createStore)(qwinkelApp);
+
 ReactDOM.render(
   <Provider store={store}>
-  <App/>
-</Provider>
-, document.getElementById('root')as HTMLElement);
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById('root') as HTMLElement
+);
