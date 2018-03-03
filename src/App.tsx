@@ -3,8 +3,8 @@ import * as React from 'react';
 import './App.css';
 import ErrorBoundary from './ErrorBoundary';
 import ProductDetail from './ProductDetail';
+import Cart from './Cart';
 import ProductOverview from './ProductOverview';
-import CartDisplay from './CartDisplay';
 import Home from './Home';
 import { connect } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
@@ -67,18 +67,7 @@ class App extends React.Component<{}, State> {
                         Cart
                       </a>
                       <div className="navbar-dropdown is-right">
-                        <Link className="navbar-item" to="/products/1">
-                          Quick Link To Product #1
-                        </Link>
-                        <Link className="navbar-item" to="/products/3">
-                          Quick Link To Product #3
-                        </Link>
-                        <Link className="navbar-item" to="/products/4">
-                          Quick Link To Product #4
-                        </Link>
-                        <Link className="navbar-item" to="/products/8">
-                          Quick Link To Product #8
-                        </Link>
+                        <Cart />
                       </div>
                     </div>
                   </div>
@@ -87,7 +76,6 @@ class App extends React.Component<{}, State> {
             </nav>
           </header>
           <main>
-            <CartDisplay />
             <ErrorBoundary>
               <Switch>
                 <Route
