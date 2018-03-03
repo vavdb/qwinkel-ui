@@ -12,7 +12,7 @@ export default function reducer(state: State = INITIAL_STATE, action: any) {
   switch (action.type) {
     case ADD_ITEM_TO_CART: {
       let productFound: boolean = false;
-      const items = state.items.map(item => {
+      const items = state.items == null ? [] : state.items.map(item => {
         if (item.product.id === action.payload.product.id) {
           productFound = true;
           return {

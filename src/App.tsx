@@ -6,7 +6,6 @@ import ProductDetail from './ProductDetail';
 import Cart from './Cart';
 import ProductOverview from './ProductOverview';
 import Home from './Home';
-import { connect } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { State, Product } from './interfaces';
 import { Link, Route, Switch } from 'react-router-dom';
