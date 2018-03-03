@@ -1,5 +1,3 @@
-import { Action, ActionCreator, Dispatch } from 'redux';
-
 export interface Product {
   id: number;
   naam: string;
@@ -25,8 +23,3 @@ export interface State {
   cartId: string;
   items: CartItem[];
 }
-
-// export interface State {
-//   cart: Cart;
-//   producten: Product[];
-// }

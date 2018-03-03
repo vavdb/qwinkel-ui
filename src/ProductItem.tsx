@@ -1,15 +1,10 @@
-/* tslint:disable:no-any,no-console */
-
 import * as React from 'react';
-import './App.css';
 import AddToCart from './AddToCart';
-import { connect } from 'react-redux';
-import { Product, Image, State } from './interfaces';
-import { addItemToCart } from './modules/cart';
+import { Product, Image } from './interfaces';
 
 const CardImage = (props: Image): JSX.Element => (
   <div className="webshop card-image">
-    <figure className="image">
+    <figure className="image zoom">
       <img src={'http://qwinkel.quintor.nl/' + props.filePath} />
     </figure>
   </div>

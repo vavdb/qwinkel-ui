@@ -1,5 +1,4 @@
 import * as React from 'react';
-import AddToCart from './AddToCart';
 import { Product } from './interfaces';
 import ProductItem from './ProductItem';
 

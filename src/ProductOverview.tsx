@@ -1,11 +1,9 @@
 import * as React from 'react';
-import AddToCart from './AddToCart';
-import { Link } from 'react-router-dom';
 import { Product } from './interfaces';
 import ProductItem from './ProductItem';
 
 class State {
-  loading: boolean; 
+  loading: boolean;
   products: any[];
   error: any;
 }
@@ -27,7 +25,7 @@ export default class ProductOverview extends React.Component<any, State> {
   fetchProducten() {
     this.callApi()
       .then(res => this.setState({ loading: false, products: res.content }))
-      .catch(err => console.log(err)); 
+      .catch(err => console.log(err));
   }
 
   callApi = async () => {
@@ -54,22 +52,22 @@ export default class ProductOverview extends React.Component<any, State> {
     );
   }
 
-  renderHelper() { 
+  renderHelper() {
     if (this.state.loading) {
       return <p>One moment please...</p>;
     } else {
       return (
         <section className="section">
-        <div className="Box">
-          <div className="columns is-multiline is-8">
-            {this.state &&
-              this.state.products &&
-              this.state.products.map((product: Product) => (
-                <ProductItem key={product.id} {...product} />
-              ))}
+          <div className="Box">
+            <div className="columns is-multiline is-8">
+              {this.state &&
+                this.state.products &&
+                this.state.products.map((product: Product) => (
+                  <ProductItem key={product.id} {...product} />
+                ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
       );
     }
   }
